@@ -1,20 +1,15 @@
 # coding=utf-8
 import json
 import os
-from flask_cors import CORS, cross_origin
-import subprocess
 
 from flask import Flask, render_template, request, make_response
+from flask_cors import CORS, cross_origin
 
-import norepeatmusictheory
 from audio_to_midi_melodia import fill_ui_beats, ui_beats_to_notes, notes_to_ui, audio_to_midi_notes
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.config['SECRET_KEY'] = 'secret!'
-
-pyPlayCd = os.getcwd()
-py2PlayMusicshell = "%s/venv/bin/python %s/audio_to_midi_melodia.py" % (pyPlayCd, pyPlayCd)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -77,6 +72,9 @@ def mix():
 
         print ui_notes
 
+        pyPlayCd = os.getcwd()
+        py2PlayMusicshell = "%s/venv/bin/python %s/audio_to_midi_melodia.py" % (pyPlayCd, pyPlayCd)
+
         os.chdir(pyPlayCd)
 
         print "Calling shell: %s" % (py2PlayMusicshell + " \"%s\"" % data_raw)
@@ -92,7 +90,7 @@ def mix():
 
         # norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
 
-        return json.dumps({"notes": notes_to_ui(data)})
+        return json.dumps({"notes": notes_to_ui(data), "duration": 41})
 
 
 if __name__ == '__main__':
