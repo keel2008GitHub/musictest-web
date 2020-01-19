@@ -68,27 +68,21 @@ def mix():
         for i in data:
             data_raw.append([i[0], i[1], i[2].encode('raw_unicode_escape')])
 
-        ui_notes = notes_to_ui(data);
-
-        print ui_notes
+        print data_raw
 
         pyPlayCd = os.getcwd()
         py2PlayMusicshell = "%s/venv/bin/python %s/audio_to_midi_melodia.py" % (pyPlayCd, pyPlayCd)
 
         os.chdir(pyPlayCd)
 
-        print "Calling shell: %s" % (py2PlayMusicshell + " \"%s\"" % data_raw)
-        # sub = subprocess.Popen(py2PlayMusicshell + " \"%s\"" % data_raw, shell=True, stdout=subprocess.PIPE)
-        # sub.wait()
-        # print sub.stdout.read()
-        val = os.system(py2PlayMusicshell + " \"%s\"" % data_raw)
+        # print "Calling shell: %s" % (py2PlayMusicshell + " \"%s\"" % data_raw)
+        # val = os.system(py2PlayMusicshell + " \"%s\"" % data_raw)
+        # val = os.system("rm -rf ./musicpiece*")
+        # print val
 
-        #
-        val = os.system("rm -rf ./musicpiece*")
+        ui_notes = notes_to_ui(data);
 
-        print val
-
-        # norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
+        print ui_notes
 
         return json.dumps({"notes": notes_to_ui(data), "duration": 41})
 

@@ -659,72 +659,74 @@ def play(file_name):
         else:
             os.mkdir(path)
             break
-    fluidsynth.init("Timbre.sf2",snareplayer,file=path + '/snare.wav')
-    snareplayer.main_volume(channel=9,value=70)
-    snareplayer.play_Track(finalpercussion.snaretrack,channel=9,bpm=100)
-    fluidsynth.initialized = False
-    fluidsynth.init("Timbre.sf2",highhatplayer,file=path + '/highhat.wav')
-    highhatplayer.main_volume(channel=9,value=50)
-    highhatplayer.play_Track(finalpercussion.highhattrack,channel=9,bpm=100)
-    fluidsynth.initialized = False
-    fluidsynth.init("Timbre.sf2",cymbalplayer,file=path + '/cymbal.wav')
-    cymbalplayer.main_volume(channel=9,value=70)
-    cymbalplayer.play_Track(finalpercussion.cymbaltrack,channel=9,bpm=100)
-    fluidsynth.initialized = False
-    fluidsynth.init("Timbre.sf2",tomplayer,file=path + '/tom.wav')
-    tomplayer.main_volume(channel=9,value=70)
-    tomplayer.play_Track(finalpercussion.tomtrack,channel=9,bpm=100)
-    fluidsynth.initialized = False
-    fluidsynth.init("Timbre.sf2",baseplayer,file=path + '/base.wav')
-    baseplayer.main_volume(channel=9,value=100)
-    baseplayer.play_Track(finalpercussion.basetrack,channel=9,bpm=100)
-    fluidsynth.initialized = False
-    fluidsynth.init("Timbre.sf2",lefthandplayer,file=path + '/lefthand.wav')
-    lefthandplayer.main_volume(channel=1,value=70)
-    lefthandplayer.play_Track(lefthandtrack2,channel=1,bpm=100)
-    midi_file_out.write_Track(path + '/guitar.mid',guitartrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/guitar.mid',path+'/guitar.wav')
-    midi_file_out.write_Track(path + '/string.mid',strintrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/string.mid',path+'/string.wav')
-    midi_file_out.write_Track(path + '/basse.mid',bassetrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/basse.mid',path+'/basse.wav')
-    midi_file_out.write_Track(path + '/brass.mid',brasstrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/brass.mid',path+'/brass.wav')
-    midi_file_out.write_Track(path + '/electricguitar.mid',electricguitartrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/electricguitar.mid',path+'/electricguitar.wav')
-    midi_file_out.write_Track(path + '/synth.mid',synthtrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/synth.mid',path+'/synth.wav')
-    midi_file_out.write_Track(path + '/frhorn.mid',frhorntrack1,bpm=timeconstant)
-    FluidSynth('Timbre.sf2').midi_to_audio(path+'/frhorn.mid',path+'/frhorn.wav')
+    # fluidsynth.init("Timbre.sf2",snareplayer,file=path + '/snare.wav')
+    # snareplayer.main_volume(channel=9,value=70)
+    # snareplayer.play_Track(finalpercussion.snaretrack,channel=9,bpm=100)
+    # fluidsynth.initialized = False
+    # fluidsynth.init("Timbre.sf2",highhatplayer,file=path + '/highhat.wav')
+    # highhatplayer.main_volume(channel=9,value=50)
+    # highhatplayer.play_Track(finalpercussion.highhattrack,channel=9,bpm=100)
+    # fluidsynth.initialized = False
+    # fluidsynth.init("Timbre.sf2",cymbalplayer,file=path + '/cymbal.wav')
+    # cymbalplayer.main_volume(channel=9,value=70)
+    # cymbalplayer.play_Track(finalpercussion.cymbaltrack,channel=9,bpm=100)
+    # fluidsynth.initialized = False
+    # fluidsynth.init("Timbre.sf2",tomplayer,file=path + '/tom.wav')
+    # tomplayer.main_volume(channel=9,value=70)
+    # tomplayer.play_Track(finalpercussion.tomtrack,channel=9,bpm=100)
+    # fluidsynth.initialized = False
+    # fluidsynth.init("Timbre.sf2",baseplayer,file=path + '/base.wav')
+    # baseplayer.main_volume(channel=9,value=100)
+    # baseplayer.play_Track(finalpercussion.basetrack,channel=9,bpm=100)
+    # fluidsynth.initialized = False
+    # fluidsynth.init("Timbre.sf2",lefthandplayer,file=path + '/lefthand.wav')
+    # lefthandplayer.main_volume(channel=1,value=70)
+    # lefthandplayer.play_Track(lefthandtrack2,channel=1,bpm=100)
+    # midi_file_out.write_Track(path + '/guitar.mid',guitartrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/guitar.mid',path+'/guitar.wav')
+    # midi_file_out.write_Track(path + '/string.mid',strintrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/string.mid',path+'/string.wav')
+    # midi_file_out.write_Track(path + '/basse.mid',bassetrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/basse.mid',path+'/basse.wav')
+    # midi_file_out.write_Track(path + '/brass.mid',brasstrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/brass.mid',path+'/brass.wav')
+    # midi_file_out.write_Track(path + '/electricguitar.mid',electricguitartrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/electricguitar.mid',path+'/electricguitar.wav')
+    # midi_file_out.write_Track(path + '/synth.mid',synthtrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/synth.mid',path+'/synth.wav')
+    # midi_file_out.write_Track(path + '/frhorn.mid',frhorntrack1,bpm=timeconstant)
+    # FluidSynth('Timbre.sf2').midi_to_audio(path+'/frhorn.mid',path+'/frhorn.wav')
+
     midi_file_out.write_Track(path + '/righthand.mid',righthandtrack1,bpm=timeconstant)
     FluidSynth('Timbre.sf2').midi_to_audio(path+'/righthand.mid',path+'/righthand.wav')
-    sound1 = AudioSegment.from_wav(path + "/righthand.wav")
-    sound1 += 5
-    sound2 = AudioSegment.from_wav(path + "/lefthand.wav")
-    sound2 += 2
-    sound3 = AudioSegment.from_wav(path + "/snare.wav")
-    sound4 = AudioSegment.from_wav(path + "/base.wav")
-    sound5 = AudioSegment.from_wav(path + "/highhat.wav")
-    sound6 = AudioSegment.from_wav(path + "/cymbal.wav")
-    sound7 = AudioSegment.from_wav(path + "/tom.wav")
-    sound8 = AudioSegment.from_wav(path + "/guitar.wav")
-    sound9 = AudioSegment.from_wav(path + "/string.wav")
-    sound9 -= 5
-    sound10 = AudioSegment.from_wav(path + "/basse.wav")
-    sound11 = AudioSegment.from_wav(path + "/brass.wav")
-    sound11 -= 5
-    sound12 = AudioSegment.from_wav(path + "/electricguitar.wav")
-    sound12 -= 10
-    sound13 = AudioSegment.from_wav(path + "/synth.wav")
-    sound13 -= 15
-    sound14 = AudioSegment.from_wav(path + "/frhorn.wav")
 
-    combined = sound2.overlay(sound1.overlay(sound3.overlay(sound4.overlay(sound5.overlay(sound6.overlay(sound7.overlay(sound8.overlay(sound9.overlay(sound10.overlay(sound11.overlay(sound12.overlay(sound13.overlay(sound14)))))))))))))
-    combined.export(path + "/" + file_name, format='wav')
-
-    shutil.copy(path + "/" + file_name,  os.getcwd()+"/static")
-
-    print "the file name is " + file_name
+    # sound1 = AudioSegment.from_wav(path + "/righthand.wav")
+    # sound1 += 5
+    # sound2 = AudioSegment.from_wav(path + "/lefthand.wav")
+    # sound2 += 2
+    # sound3 = AudioSegment.from_wav(path + "/snare.wav")
+    # sound4 = AudioSegment.from_wav(path + "/base.wav")
+    # sound5 = AudioSegment.from_wav(path + "/highhat.wav")
+    # sound6 = AudioSegment.from_wav(path + "/cymbal.wav")
+    # sound7 = AudioSegment.from_wav(path + "/tom.wav")
+    # sound8 = AudioSegment.from_wav(path + "/guitar.wav")
+    # sound9 = AudioSegment.from_wav(path + "/string.wav")
+    # sound9 -= 5
+    # sound10 = AudioSegment.from_wav(path + "/basse.wav")
+    # sound11 = AudioSegment.from_wav(path + "/brass.wav")
+    # sound11 -= 5
+    # sound12 = AudioSegment.from_wav(path + "/electricguitar.wav")
+    # sound12 -= 10
+    # sound13 = AudioSegment.from_wav(path + "/synth.wav")
+    # sound13 -= 15
+    # sound14 = AudioSegment.from_wav(path + "/frhorn.wav")
+    #
+    # combined = sound2.overlay(sound1.overlay(sound3.overlay(sound4.overlay(sound5.overlay(sound6.overlay(sound7.overlay(sound8.overlay(sound9.overlay(sound10.overlay(sound11.overlay(sound12.overlay(sound13.overlay(sound14)))))))))))))
+    # combined.export(path + "/" + file_name, format='wav')
+    #
+    # shutil.copy(path + "/" + file_name,  os.getcwd()+"/static")
+    #
+    # print "the file name is " + file_name
 
 
 
