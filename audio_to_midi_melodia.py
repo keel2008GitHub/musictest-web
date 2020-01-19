@@ -379,18 +379,18 @@ def notes_to_ui(filled_ui_beats):
 
 
 if __name__ == '__main__':
-    # if len(sys.argv) > 1:
-    #     data_raw = eval(sys.argv[1])
-    #     norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
-    #     print 'Music has been mixed.'
-    # else:
-    #     print 'Miss data argument.'
-    c = ['D-6|1', 'C-6|13', 'C-5|14', 'C-3|15', 'D-1|17', 'D-6|24', 'C-6|32', 'C-6|47', 'C-6|53']
-    d = fill_ui_beats(c)
-    e = ui_beats_to_notes(d)
-    print c
-    print d
-    print e
+    if len(sys.argv) > 1:
+        data_raw = eval(sys.argv[1])
+        norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
+        print 'Music has been mixed.'
+    else:
+        print 'Miss data argument.'
+    # c = ['D-6|1', 'C-6|13', 'C-5|14', 'C-3|15', 'D-1|17', 'D-6|24', 'C-6|32', 'C-6|47', 'C-6|53']
+    # d = fill_ui_beats(c)
+    # e = ui_beats_to_notes(d)
+    # print c
+    # print d
+    # print e
 
 # notes = audio_to_midi_notes(infile="./sample/humming-star.wav",
 #                             smooth=0.001, minduration=0.11, speed=100)
