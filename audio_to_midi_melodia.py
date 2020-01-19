@@ -330,7 +330,7 @@ def fill_ui_beats(ui_beats):
 
 def ui_beats_to_notes(filled_ui_beats):
     notes = []
-    first_not_none_notes = 'None';
+    first_not_none_notes = 'None'
     for i in range(0, len(filled_ui_beats)):
         c = filled_ui_beats[i]
         n = string.capitalize(get_ui_note_name(c))
