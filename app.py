@@ -32,27 +32,6 @@ def humming():
         return json.dumps({"notes": notes_to_ui(notes)})
 
 
-@app.route('/format', methods=['GET', 'POST'])
-@cross_origin()
-def format():
-    if request.method == 'POST':
-        data = request.get_data()
-        data2 = json.loads(data, encoding='raw_unicode_escape')
-        filled_ui_beats = fill_ui_beats(data2["notes"])
-
-        data = ui_beats_to_notes(filled_ui_beats)
-
-        print(data)
-
-        data_raw = []
-        for i in data:
-            data_raw.append([i[0], i[1], i[2].encode('raw_unicode_escape')])
-
-        # norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
-
-        return json.dumps({"notes": notes_to_ui(data)})
-
-
 @app.route('/mix', methods=['GET', 'POST'])
 @cross_origin()
 def mix():

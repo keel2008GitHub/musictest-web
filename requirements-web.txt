@@ -1,1 +1,10 @@
-flask==1.1.1
+numpy==1.16.1
+SoundFile
+resampy
+vamp
+MIDIUtil
+jams
+scipy
+pandas
+pretty-midi
+flask
