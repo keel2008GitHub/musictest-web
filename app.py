@@ -54,10 +54,10 @@ def mix():
 
         os.chdir(pyPlayCd)
 
-        # print "Calling shell: %s" % (py2PlayMusicshell + " \"%s\"" % data_raw)
-        # val = os.system(py2PlayMusicshell + " \"%s\"" % data_raw)
-        # val = os.system("rm -rf ./musicpiece*")
-        # print val
+        print "Calling shell: %s" % (py2PlayMusicshell + " \"%s\"" % data_raw)
+        val = os.system(py2PlayMusicshell + " \"%s\"" % data_raw)
+        val = os.system("rm -rf ./musicpiece*")
+        print val
 
         ui_notes = notes_to_ui(data);
 

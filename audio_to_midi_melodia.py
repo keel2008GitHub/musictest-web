@@ -302,7 +302,6 @@ def fill_ui_beats(ui_beats):
     ui_beats = sorted(ui_beats, cmp_ui_beat_case)
 
     filled_notes = ui_beats
-    last_idx = 0
     for c_whole_beat in whole_beats:
 
         checked = False
@@ -324,16 +323,26 @@ def fill_ui_beats(ui_beats):
 
         if not checked:
             filled_notes.append("%s|%d" % ('None', c_whole_beat))
+
+
     return filled_notes
 
 
 def ui_beats_to_notes(filled_ui_beats):
-    notes = [];
+    notes = []
+    first_not_none_notes = 'None';
+    for i in range(0, len(filled_ui_beats)):
+        c = filled_ui_beats[i]
+        n = string.capitalize(get_ui_note_name(c))
+        if n != 'None':
+            first_not_none_notes = n
+            break
+
     for i in range(0, len(filled_ui_beats)):
         c = filled_ui_beats[i]
         next = None
         if i == len(filled_ui_beats) - 1:
-            next = "None|128";
+            next = "None|128"
         else:
             next = filled_ui_beats[i + 1]
 
@@ -347,10 +356,10 @@ def ui_beats_to_notes(filled_ui_beats):
 
         if c_beat == 1:
             n = string.capitalize(get_ui_note_name(c))
-            # beat 1 can't be none.
+            # beat 1 can't be none.s
             if n == 'None':
-                n = 'C-4'
-            notes.append([0.0, duration, n])
+                n = first_not_none_notes
+            notes.append([0.0, duration + 0.25, n])
         else:
             notes.append([c_beat * 0.25, duration, string.capitalize(get_ui_note_name(c))])
 
@@ -360,7 +369,7 @@ def ui_beats_to_notes(filled_ui_beats):
 def notes_to_ui(filled_ui_beats):
     ui_beats = []
     for i in filled_ui_beats:
-        name = i[2].replace('#','')
+        name = i[2].replace('#', '')
         if i[0] == 0.0:
             ui_beats.append("%s|%d" % (name, 1))
         else:
@@ -370,12 +379,18 @@ def notes_to_ui(filled_ui_beats):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        data_raw = eval(sys.argv[1])
-        norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
-        print 'Music has been mixed.'
-    else:
-        print 'Miss data argument.'
+    # if len(sys.argv) > 1:
+    #     data_raw = eval(sys.argv[1])
+    #     norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
+    #     print 'Music has been mixed.'
+    # else:
+    #     print 'Miss data argument.'
+    c = ['D-6|1', 'C-6|13', 'C-5|14', 'C-3|15', 'D-1|17', 'D-6|24', 'C-6|32', 'C-6|47', 'C-6|53']
+    d = fill_ui_beats(c)
+    e = ui_beats_to_notes(d)
+    print c
+    print d
+    print e
 
 # notes = audio_to_midi_notes(infile="./sample/humming-star.wav",
 #                             smooth=0.001, minduration=0.11, speed=100)
