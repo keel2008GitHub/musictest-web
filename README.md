@@ -64,10 +64,11 @@
 >       1. 如果网速不畅, 浏览器的录音和mix都会执行失败.        
 ###  前端Frontend代码开发说明
 > 1. 前端代码开发, 部署概述
->   1. 前端代码虽然就放在musictest-web的static和templates目录下, 但这些是经过编译和压缩的代码, 真正的原始代码, 在https://github.com/keel2008GitHub/musictest-ui提供下载.
->   1. 它是利用npm工具, 结合typesscript语法, vue前端模组开发完成的.
+>   1. musictest-web的static和templates目录下是经过编译和压缩的代码, 不推荐直接修改. 
+>   1. 编译和压缩前的源代码, 在https://github.com/keel2008GitHub/musictest-ui提供下载.
+>   1. musictest-ui是vue技术实现的, 它使用typescript语法, 需要使用npm工具管理代码.
 >   1. npm可以用homebrew install node来安装, osx默认也有, 但版本比较旧无法完成开发, 推荐升级到12.10版本.
->   1. 下载代码后, 在musictest-ui目录下能看到原始的代码, 运行npm run build之后, 可以在dist目录下看到准备copy到musictest-web的static目录和Templates目录编译后代码.
+>   1. 下载源代码后, 在musictest-ui目录下运行一次npm install(只需刚下载时运行一次), 然后运行npm run build, 会出现dist子目录, 内部是copy到musictest-web的static目录和Templates目录编译后代码.
 > 1. 核心代码说明
 >   1. src/components/MusicalNote/index.vue 曲谱绘板, 最重要的ui组件, 绘制纵35,横128的坐标面板, 识别鼠标点击绘制音符.
 >       1. export default {props: { 部分,定义绘板内的表格, 音符点, 曲线的颜色和宽度.
