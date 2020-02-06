@@ -46,7 +46,7 @@ possiblevalues = [0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.
                   28.0, 28.25, 28.5, 28.75, 29.0, 29.25, 29.5, 29.75, 30.0, 30.25, 30.5, 30.75, 31.0, 31.25, 31.5,
                   31.75]
 
-whole_beats = [1, 16.0, 32.0, 48.0, 64.0, 80.0, 96.0, 112.0, 128.0]
+whole_beats = [0, 16.0, 32.0, 48.0, 64.0, 80.0, 96.0, 112.0, 128.0]
 
 
 def save_midi(outfile, notes, tempo):
@@ -308,12 +308,20 @@ def fill_ui_beats(ui_beats):
         for i in range(0, len(ui_beats)):
             beat = get_ui_note_beat(ui_beats[i])
             name = get_ui_note_name(ui_beats[i])
+            if c_whole_beat == 0.0:
+                checked = True
+                if c_whole_beat == beat:
+                    break
+                else:
+                    filled_notes.insert(i, "%s|%d" % (name, c_whole_beat))
+                    break
+                filled_notes.insert(i, "%s|%d" % (name, c_whole_beat))
             if c_whole_beat <= beat < c_whole_beat * 16.0:
                 checked = True
                 if c_whole_beat == beat:
                     break
                 else:
-                    if c_whole_beat == 1.0:
+                    if c_whole_beat == 0.0:
                         filled_notes.insert(i, "%s|%d" % (name, c_whole_beat))
                     else:
                         filled_notes.insert(i, "%s|%d" % ('None', c_whole_beat))
@@ -324,13 +332,12 @@ def fill_ui_beats(ui_beats):
         if not checked:
             filled_notes.append("%s|%d" % ('None', c_whole_beat))
 
-
     return filled_notes
 
 
 def ui_beats_to_notes(filled_ui_beats):
     notes = []
-    first_not_none_notes = 'None'
+    first_not_none_notes = 'C-4'  # first_not_none_notes = 'None'
     for i in range(0, len(filled_ui_beats)):
         c = filled_ui_beats[i]
         n = string.capitalize(get_ui_note_name(c))
@@ -354,34 +361,30 @@ def ui_beats_to_notes(filled_ui_beats):
         else:
             duration = ((n_beat - c_beat) % 16) * 0.25
 
-        if c_beat == 1:
+        if c_beat == 0:
             n = string.capitalize(get_ui_note_name(c))
             # beat 1 can't be none.s
             if n == 'None':
                 n = first_not_none_notes
-            notes.append([0.0, duration + 0.25, n])
+                notes.append([0.0, duration, n])
+            else:
+                notes.append([0.0, duration, n])
         else:
             notes.append([c_beat * 0.25, duration, string.capitalize(get_ui_note_name(c))])
-
     return notes
-
-
 def notes_to_ui(filled_ui_beats):
     ui_beats = []
     for i in filled_ui_beats:
         name = i[2].replace('#', '')
-        if i[0] == 0.0:
-            ui_beats.append("%s|%d" % (name, 1))
-        else:
-            ui_beats.append("%s|%d" % (name, i[0] * 4))
-
+        ui_beats.append("%s|%d" % (name, i[0] * 4))
     return sorted(ui_beats, cmp_ui_beat_case)
+
 
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         data_raw = eval(sys.argv[1])
-        norepeatmusictheory.determinelefthand(data_raw, [], nameoffile='finalversion.wav')
+        norepeatmusictheory.determinelefthand(data_raw, [[None,4]], nameoffile='finalversion.wav')
         print 'Music has been mixed.'
     else:
         print 'Miss data argument.'

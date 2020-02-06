@@ -450,7 +450,12 @@ def determinelefthand(right_hand_music,down_beat_music,nameoffile='music.mp3'):
     global downbeatbar
     global soundtrue
     for i in down_beat_music:
-        downbeatbar.place_notes(i[0],i[1])
+        if i[0] == "None":
+            print "went through None"
+            lefthandtrack2.add_notes(None, i[1])
+        else:
+            print "went through normal"
+            lefthandtrack2.add_notes(i[0], i[1])
     for i in right_hand_music:
         if i[2] == "None":
             right_hand_list.append([i[2], i[1]])
@@ -508,8 +513,8 @@ def determinelefthand(right_hand_music,down_beat_music,nameoffile='music.mp3'):
             chords_needed2 = latestmusic.determination(musicpiece2,2)
             del chords_needed2[-1]
             print chords_needed2
+    print lefthandtrack2
     righthandtrack1.add_notes(None,4)
-    lefthandtrack2.add_bar(downbeatbar)
     guitartrack1.add_notes(None,4)
     strintrack1.add_notes(None,4)
     bassetrack1.add_notes(None,4)
