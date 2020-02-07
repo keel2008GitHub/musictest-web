@@ -7,8 +7,6 @@
 /star
 /static/*.wav
 /venv
-/combo.wav
-/combo.mp3
 /templates/.DS_Store
 /.idea/*
 /.idea/musictest-web.iml
