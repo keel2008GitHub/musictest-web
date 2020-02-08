@@ -2,7 +2,7 @@
 import json
 import os
 
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, send_from_directory
 from flask_cors import CORS, cross_origin
 
 import audio_to_midi_melodia_test
@@ -69,19 +69,6 @@ def mix():
 
         return json.dumps({"notes": notes_to_ui(data), "duration": 41})
 
-
-# 高级模式
-@app.route('/hummingAd', methods=['GET', 'POST'])
-@cross_origin()
-def humming_advanced():
-    if request.method == 'POST':
-        f = request.files['audioData']
-        f.save(os.path.join('static', 'hummingAd.wav'))
-        notes = audio_to_midi_notes(infile=os.getcwd() + "/static/hummingAd.wav",
-                                    smooth=0.001, minduration=0.11, speed=100)
-        return json.dumps({"notes": notes_to_ui(notes)})
-
-
 # 高级模式
 @app.route('/mixAd', methods=['GET', 'POST'])
 @cross_origin()
@@ -117,6 +104,42 @@ def mix_advanced():
         print ui_notes
 
         return json.dumps({"notes": notes_to_ui(data), "duration": 41})
+
+@app.route("/download")
+def download():
+    pyCd = os.getcwd()
+
+    file_name = "finalversion.wav"
+    file_path_name = "%s/static" % pyCd
+
+    return send_from_directory(file_path_name, filename=file_name, as_attachment=True)
+
+
+@app.route("/downloadAd")
+def downloadAd():
+
+    pyCd = os.getcwd()
+
+    file_name = "finalversionAd.wav"
+
+    file_path_name = "%s/static" % pyCd
+
+    return send_from_directory(file_path_name, filename=file_name, as_attachment=True)
+
+
+# 高级模式
+@app.route('/hummingAd', methods=['GET', 'POST'])
+@cross_origin()
+def humming_advanced():
+    if request.method == 'POST':
+        f = request.files['audioData']
+        f.save(os.path.join('static', 'hummingAd.wav'))
+        notes = audio_to_midi_notes(infile=os.getcwd() + "/static/hummingAd.wav",
+                                    smooth=0.001, minduration=0.11, speed=100)
+        return json.dumps({"notes": notes_to_ui(notes)})
+
+
+
 
 
 if __name__ == '__main__':

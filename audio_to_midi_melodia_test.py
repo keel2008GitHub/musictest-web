@@ -427,7 +427,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         data_raw = eval(sys.argv[1])
         downbeatbar = eval(sys.argv[2])
-        norepeatmusictheory.determinelefthand(data_raw, downbeatbar, nameoffile='finalversion.wav')
+
+        norepeatmusictheory.determinelefthand(data_raw, downbeatbar, nameoffile='finalversionAd.wav')
         print 'Music has been mixed.'
     else:
         print 'Miss data argument.'
