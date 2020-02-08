@@ -3,6 +3,7 @@
 /*.mid
 /*.flac
 /*.sf2
+/*.pyc
 /star1
 /star
 /static/*.wav
@@ -12,3 +13,4 @@
 /.idea/musictest-web.iml
 **/.DS_Store
 /.DS_Store
+*.pyc
