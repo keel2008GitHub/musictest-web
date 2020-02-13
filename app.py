@@ -1,6 +1,7 @@
 # coding=utf-8
 import json
 import os
+import sys
 
 from flask import Flask, render_template, request, make_response, send_from_directory
 from flask_cors import CORS, cross_origin
@@ -69,6 +70,7 @@ def mix():
 
         return json.dumps({"notes": notes_to_ui(data), "duration": 41})
 
+
 # 高级模式
 @app.route('/mixAd', methods=['GET', 'POST'])
 @cross_origin()
@@ -105,6 +107,7 @@ def mix_advanced():
 
         return json.dumps({"notes": notes_to_ui(data), "duration": 41})
 
+
 @app.route("/download")
 def download():
     pyCd = os.getcwd()
@@ -117,7 +120,6 @@ def download():
 
 @app.route("/downloadAd")
 def downloadAd():
-
     pyCd = os.getcwd()
 
     file_name = "finalversionAd.wav"
@@ -139,8 +141,8 @@ def humming_advanced():
         return json.dumps({"notes": notes_to_ui(notes)})
 
 
-
-
-
 if __name__ == '__main__':
+    port = sys.argv[1]
+    if port is None:
+        port = 5000
     app.run(debug=False, host='0.0.0.0', port=5000)
